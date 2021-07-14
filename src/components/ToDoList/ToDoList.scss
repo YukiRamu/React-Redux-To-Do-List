@@ -1,0 +1,41 @@
+.toDosContainer {
+  margin-top: 1rem;
+  .taskCard {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 0.5rem;
+    background-color: rgba(255, 255, 255, 0.662);
+    border-radius: 1vw;
+    color: #7e0d4c;
+    border-left: 1rem solid lightblue;
+    .task {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0;
+      padding-left: 1rem;
+      p {
+        margin: 0;
+      }
+      .btns {
+        .btn {
+          color: white;
+          border: #7e0d4c 0.1rem solid;
+          background-color: #7e0d4c;
+          &:hover,
+          &:focus {
+            background-position: right center;
+            background-color: #d54072;
+            border: 0.1rem solid white;
+            outline: none;
+            box-shadow: none;
+          }
+        }
+      }
+    }
+  }
+  .msg {
+    text-align: center;
+  }
+}

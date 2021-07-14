@@ -1,0 +1,72 @@
+.inputFormContainer {
+  /* error msg */
+}
+
+.inputFormContainer form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.inputFormContainer form .form-group {
+  width: 100%;
+}
+
+.inputFormContainer form .form-group .form-control {
+  border: none;
+  outline: none;
+  -webkit-appearance: button;
+  border-radius: none;
+}
+
+.inputFormContainer form .form-group .form-control:focus {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: #ef687e 0.2rem solid;
+}
+
+.inputFormContainer form .form-group .form-control:active {
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.inputFormContainer form .form-group .form-control:-internal-autofill-selected {
+  background-color: transparent;
+}
+
+.inputFormContainer form .addBtn {
+  color: white;
+  border: #7e0d4c 0.1rem solid;
+  background-color: #7e0d4c;
+}
+
+.inputFormContainer form .addBtn:hover, .inputFormContainer form .addBtn:focus {
+  background-position: right center;
+  background-color: #d54072;
+  border: 0.1rem solid white;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.inputFormContainer .errorMsg {
+  text-align: center;
+  font-weight: bold;
+  border-radius: 1vw;
+  width: 80%;
+  margin: auto;
+  color: #7e0d4c;
+}
+/*# sourceMappingURL=ToDoInput.css.map */

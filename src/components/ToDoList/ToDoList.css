@@ -1,0 +1,55 @@
+.toDosContainer {
+  margin-top: 1rem;
+}
+
+.toDosContainer .taskCard {
+  width: 100%;
+  margin: auto;
+  margin-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.662);
+  border-radius: 1vw;
+  color: #7e0d4c;
+  border-left: 1rem solid lightblue;
+}
+
+.toDosContainer .taskCard .task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0;
+  padding-left: 1rem;
+}
+
+.toDosContainer .taskCard .task p {
+  margin: 0;
+}
+
+.toDosContainer .taskCard .task .btns .btn {
+  color: white;
+  border: #7e0d4c 0.1rem solid;
+  background-color: #7e0d4c;
+}
+
+.toDosContainer .taskCard .task .btns .btn:hover, .toDosContainer .taskCard .task .btns .btn:focus {
+  background-position: right center;
+  background-color: #d54072;
+  border: 0.1rem solid white;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.toDosContainer .msg {
+  text-align: center;
+}
+/*# sourceMappingURL=ToDoList.css.map */

@@ -1,0 +1,51 @@
+.inputFormContainer {
+  form {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    .form-group {
+      width: 100%;
+      .form-control {
+        border: none;
+        outline: none;
+        -webkit-appearance: button;
+        border-radius: none;
+        &:focus {
+          outline: none;
+          box-shadow: none;
+          border: #ef687e 0.2rem solid;
+        }
+        &:active {
+          outline: none;
+          box-shadow: none;
+        }
+        &:-internal-autofill-selected {
+          background-color: transparent;
+        }
+      }
+    }
+    .addBtn {
+      color: white;
+      border: #7e0d4c 0.1rem solid;
+      background-color: #7e0d4c;
+      &:hover,
+      &:focus {
+        background-position: right center;
+        background-color: #d54072;
+        border: 0.1rem solid white;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+  /* error msg */
+  .errorMsg {
+    text-align: center;
+    font-weight: bold;
+    border-radius: 1vw;
+    width: 80%;
+    margin: auto;
+    color: #7e0d4c;
+  }
+}
