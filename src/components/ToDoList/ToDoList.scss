@@ -1,32 +1,54 @@
 .toDosContainer {
   margin-top: 1rem;
+  /* Filter*/
+  .filter {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  /* List */
   .taskCard {
     width: 100%;
     margin: auto;
-    margin-bottom: 0.5rem;
-    background-color: rgba(255, 255, 255, 0.662);
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.427);
     border-radius: 1vw;
     color: #7e0d4c;
     border-left: 1rem solid lightblue;
+    &.complete {
+      background-color: rgba(128, 128, 128, 0.565);
+      color: gray;
+      border-left: 1rem solid orange;
+      .task {
+        .btns {
+          .btn {
+            border: none;
+            background-color: transparent;
+            color: gray;
+          }
+        }
+      }
+    }
     .task {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
       padding: 0;
-      padding-left: 1rem;
       p {
         margin: 0;
+        word-break: break-all;
+        width: 60%;
       }
       .btns {
         .btn {
-          color: white;
-          border: #7e0d4c 0.1rem solid;
-          background-color: #7e0d4c;
+          color: #7e0d4c;
+          border: none;
+          background-color: transparent;
           &:hover,
           &:focus {
+            font-weight: bold;
             background-position: right center;
-            background-color: #d54072;
             border: 0.1rem solid white;
             outline: none;
             box-shadow: none;
@@ -35,6 +57,7 @@
       }
     }
   }
+  /* no task left */
   .msg {
     text-align: center;
   }

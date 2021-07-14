@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
 import { addToDo } from '../../features/ToDoSlice';
 import "./ToDoInput.css";
@@ -33,13 +33,12 @@ const ToDoInput = () => {
         item: item,
         isCompleted: false,
         isDeleted: false,
+        isEditing: false,
         id: uuid()
       }));
       //clear input
       setItem("");
     }
-
-    //dispatchToDoList({ type: "ADD_TODO", payload: item });
   };
 
   return (
