@@ -25,17 +25,38 @@
     width: 100%;
     margin: auto;
     margin-bottom: 1rem;
-    padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.427);
-    border-radius: 1vw;
-    color: #7e0d4c;
-    border-left: 1rem solid #fc6177;
-    box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
-    &.complete {
-      background-color: rgba(128, 128, 128, 0.565);
-      color: gray;
-      border-left: 1rem solid #1bdacf;
-      .task {
+    //padding: 1rem;
+    // background-color: rgba(255, 255, 255, 0.427);
+    // border-radius: 1vw;
+    // color: #7e0d4c;
+    //border-left: 1rem solid #fc6177;
+    // box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
+    &.tablet {
+      grid-gap: 1.5rem;
+      justify-content: space-evenly;
+    }
+    .task {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.427);
+      box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
+      border-radius: 1vw;
+      color: #7e0d4c;
+      border-left: 1rem solid #fc6177;
+      &.tabletTask {
+        height: 100px;
+        p {
+          width: 50%;
+        }
+      }
+      &.complete {
+        background-color: rgba(128, 128, 128, 0.565);
+        color: gray;
+        border-left: 1rem solid #1bdacf;
         .btns {
           .btn {
             border: none;
@@ -44,13 +65,6 @@
           }
         }
       }
-    }
-    .task {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0;
       p {
         margin: 0;
         word-break: break-all;

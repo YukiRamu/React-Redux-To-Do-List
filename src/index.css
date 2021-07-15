@@ -6,19 +6,4 @@ body {
   min-height: 100vh;
   color: white !important;
 }
-
-.btn {
-  color: #7e0d4c;
-  border: none;
-  background-color: transparent;
-}
-
-.btn:hover, .btn:focus {
-  font-weight: bold;
-  background-position: right center;
-  border: 0.1rem solid white;
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
 /*# sourceMappingURL=index.css.map */

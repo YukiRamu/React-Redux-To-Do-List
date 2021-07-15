@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { ToDoListSelector, compToDo } from '../../features/ToDoSlice';
 import "./ToDoList.css";
 import { Row, Button, Col } from 'react-bootstrap';
 import { AiFillEdit, AiFillDelete, AiFillCheckSquare } from "react-icons/ai";
+import MediaQueryContext from '../../contexts/MediaQueryContext';
 
 const ToDoList = () => {
+
+  //Responsive design
+  const { isSmartPhone, isMobile, isTablet, isDesktop, isLargeDesktop } = useContext(MediaQueryContext);
 
   //Get state from slice.jsx
   const toDoList = useSelector(ToDoListSelector);
@@ -18,9 +22,9 @@ const ToDoList = () => {
   //methods
   const completeToDo = (e) => {
     console.log(e);
-    console.log("id is ", e.target.parentElement.parentElement.parentElement.dataset.id); //string
+    console.log("id is ", e.target.parentElement.parentElement.dataset.id); //string
     //find which item is completed
-    let compItem = toDoList.filter(elem => elem.id === e.target.parentElement.parentElement.parentElement.dataset.id);
+    let compItem = toDoList.filter(elem => elem.id === e.target.parentElement.parentElement.dataset.id);
     console.log("compItem is", compItem);
 
     //change IsCompleted flag
@@ -43,31 +47,66 @@ const ToDoList = () => {
             </div>
 
             {/* To do list */}
-            {toDoList.map(elem => (
+            {/* Smartphone and Landscape view */}
+            {(isSmartPhone || isMobile) && <>
+              {toDoList.map(elem => (
+                <Row
+                  key={elem.id}
+                  className="taskCard" >
+                  <Col
+                    data-id={elem.id}
+                    className={[
+                      "task",
+                      elem.isCompleted ? "complete" : "imcomplete"
+                    ].join(' ')}>
+                    <p>{elem.item}</p>
+                    <div className="btns">
+                      {/* complete */}
+                      <Button
+                        className="compBtn"
+                        onClick={(e) => completeToDo(e)} >Done</Button>
+                      {/* edit */}
+                      {!elem.isEditing ?
+                        <Button className="editBtn"><AiFillEdit /></Button> :
+                        <Button className="saveBtn"><AiFillCheckSquare /></Button>}
+                      {/* delete */}
+                      <Button className="deleteBtn"><AiFillDelete /></Button>
+                    </div>
+                  </Col>
+                </Row>
+              ))}
+            </>}
+
+
+            {/* Tablet, Desktop, and Large Desktop view */}
+            {(isTablet || isDesktop || isLargeDesktop) && <>
               <Row
-                key={elem.id}
-                data-id={elem.id}
-                className={[
-                  "taskCard",
-                  elem.isCompleted ? "complete" : "imcomplete"
-                ].join(' ')} >
-                <Col className="task">
-                  <p>{elem.item}</p>
-                  <div className="btns">
-                    {/* complete */}
-                    <Button
-                      className="compBtn"
-                      onClick={(e) => completeToDo(e)} >Done</Button>
-                    {/* edit */}
-                    {!elem.isEditing ?
-                      <Button className="editBtn"><AiFillEdit /></Button> :
-                      <Button className="saveBtn"><AiFillCheckSquare /></Button>}
-                    {/* delete */}
-                    <Button className="deleteBtn"><AiFillDelete /></Button>
-                  </div>
-                </Col>
+                key={toDoList.id}
+                className="taskCard tablet" >
+                {toDoList.map(elem => (
+                  <Col
+                    data-id={elem.id}
+                    className={[
+                      "col-md-5 col-lg-3 col-xl-2 task tabletTask",
+                      elem.isCompleted ? "complete" : "imcomplete"
+                    ].join(' ')}>
+                    <p>{elem.item}</p>
+                    <div className="btns">
+                      {/* complete */}
+                      <Button
+                        className="compBtn"
+                        onClick={(e) => completeToDo(e)} >Done</Button>
+                      {/* edit */}
+                      {!elem.isEditing ?
+                        <Button className="editBtn"><AiFillEdit /></Button> :
+                        <Button className="saveBtn"><AiFillCheckSquare /></Button>}
+                      {/* delete */}
+                      <Button className="deleteBtn"><AiFillDelete /></Button>
+                    </div>
+                  </Col>
+                ))}
               </Row>
-            ))}
+            </>}
           </>
         ) : (<h2 className="msg">No task left :) Good work!</h2>)}
       </div>

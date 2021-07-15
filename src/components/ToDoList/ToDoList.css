@@ -31,25 +31,13 @@
   width: 100%;
   margin: auto;
   margin-bottom: 1rem;
-  padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.427);
-  border-radius: 1vw;
-  color: #7e0d4c;
-  border-left: 1rem solid #fc6177;
-  -webkit-box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
-          box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
 }
 
-.toDosContainer .taskCard.complete {
-  background-color: rgba(128, 128, 128, 0.565);
-  color: gray;
-  border-left: 1rem solid #1bdacf;
-}
-
-.toDosContainer .taskCard.complete .task .btns .btn {
-  border: none;
-  background-color: transparent;
-  color: gray;
+.toDosContainer .taskCard.tablet {
+  grid-gap: 1.5rem;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
 }
 
 .toDosContainer .taskCard .task {
@@ -67,6 +55,33 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 0;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.427);
+  -webkit-box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
+          box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
+  border-radius: 1vw;
+  color: #7e0d4c;
+  border-left: 1rem solid #fc6177;
+}
+
+.toDosContainer .taskCard .task.tabletTask {
+  height: 100px;
+}
+
+.toDosContainer .taskCard .task.tabletTask p {
+  width: 50%;
+}
+
+.toDosContainer .taskCard .task.complete {
+  background-color: rgba(128, 128, 128, 0.565);
+  color: gray;
+  border-left: 1rem solid #1bdacf;
+}
+
+.toDosContainer .taskCard .task.complete .btns .btn {
+  border: none;
+  background-color: transparent;
+  color: gray;
 }
 
 .toDosContainer .taskCard .task p {
