@@ -87,7 +87,7 @@ const ToDoList = () => {
                   <Col
                     data-id={elem.id}
                     className={[
-                      "col-md-5 col-lg-3 col-xl-2 task tabletTask",
+                      "col-md-5 col-lg-4 col-xl-3 task tabletTask",
                       elem.isCompleted ? "complete" : "imcomplete"
                     ].join(' ')}>
                     <p>{elem.item}</p>

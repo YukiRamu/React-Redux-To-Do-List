@@ -65,11 +65,13 @@
 }
 
 .toDosContainer .taskCard .task.tabletTask {
-  height: 100px;
+  min-height: 150px;
+  border-radius: 0.5vw;
 }
 
 .toDosContainer .taskCard .task.tabletTask p {
   width: 50%;
+  font-size: 1.5rem;
 }
 
 .toDosContainer .taskCard .task.complete {
