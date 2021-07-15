@@ -1,15 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import FadeIn from 'react-fade-in';
 import ToDoInput from './components/ToDoInput/ToDoInput';
 import ToDoList from './components/ToDoList/ToDoList';
-import MediaQueryContext from './contexts/MediaQueryContext';
 
 const App = () => {
-
-  const { isSmartPhone, isMobile, isTablet, isDesktop, isLargeDesktop } = useContext(MediaQueryContext);
 
   return (
     < >
@@ -21,11 +18,7 @@ const App = () => {
         <div className="mainContainer">
           <FadeIn>
             <ToDoInput />
-            {/* Filter */}
-
-            {/* To Do List */}
             <ToDoList />
-            {/* Done */}
           </FadeIn>
         </div>
 

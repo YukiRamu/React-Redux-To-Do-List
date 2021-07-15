@@ -33,7 +33,7 @@
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
-  border: #ef687e 0.2rem solid;
+  border: #dd3144 0.2rem solid;
 }
 
 .inputFormContainer form .form-group .form-control:active {
@@ -49,12 +49,12 @@
 .inputFormContainer form .addBtn {
   color: white;
   border: #7e0d4c 0.1rem solid;
-  background-color: #7e0d4c;
+  background-color: #dd3144;
 }
 
 .inputFormContainer form .addBtn:hover, .inputFormContainer form .addBtn:focus {
   background-position: right center;
-  background-color: #d54072;
+  background-color: #fc6177;
   border: 0.1rem solid white;
   outline: none;
   -webkit-box-shadow: none;

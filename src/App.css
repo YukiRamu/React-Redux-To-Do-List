@@ -10,7 +10,9 @@
 }
 
 .appContainer header {
-  margin: 1rem auto;
+  background-color: #dd3144;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .appContainer header h1 {

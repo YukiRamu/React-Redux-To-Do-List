@@ -1,9 +1,13 @@
+@import "./colors";
+
 .appContainer {
   display: flex;
   flex-flow: column;
   min-height: 100vh;
   header {
-    margin: 1rem auto;
+    background-color: $main;
+    padding: 1rem;
+    margin-bottom: 1rem;
     h1 {
       text-align: center;
     }
@@ -20,13 +24,13 @@
     // transform: translate(-50%);
     width: 100%;
     text-align: center;
-    color: #7e0d4c;
+    color: $textColor;
     a {
       text-decoration: none;
       margin-left: 0.5rem;
-      color: #7e0d4c;
+      color: $textColor;
       &:hover {
-        color: white;
+        color: $white;
       }
     }
   }

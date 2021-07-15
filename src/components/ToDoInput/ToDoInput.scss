@@ -1,3 +1,5 @@
+@import "../../colors";
+
 .inputFormContainer {
   form {
     display: flex;
@@ -14,7 +16,7 @@
         &:focus {
           outline: none;
           box-shadow: none;
-          border: #ef687e 0.2rem solid;
+          border: $main 0.2rem solid;
         }
         &:active {
           outline: none;
@@ -26,14 +28,14 @@
       }
     }
     .addBtn {
-      color: white;
-      border: #7e0d4c 0.1rem solid;
-      background-color: #7e0d4c;
+      color: $white;
+      border: $textColor 0.1rem solid;
+      background-color: $main;
       &:hover,
       &:focus {
         background-position: right center;
-        background-color: #d54072;
-        border: 0.1rem solid white;
+        background-color: $progress;
+        border: 0.1rem solid $white;
         outline: none;
         box-shadow: none;
       }
@@ -46,6 +48,6 @@
     border-radius: 1vw;
     width: 80%;
     margin: auto;
-    color: #7e0d4c;
+    color: $textColor;
   }
 }

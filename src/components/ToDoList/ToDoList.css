@@ -56,9 +56,9 @@
           justify-content: space-between;
   padding: 0;
   padding: 1rem;
-  background-color: rgba(255, 255, 255, 0.427);
-  -webkit-box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
-          box-shadow: 0.1rem 0.2rem 0.5rem rgba(0, 0, 0, 0.386);
+  background-color: rgba(255, 255, 255, 0.489);
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   border-radius: 1vw;
   color: #7e0d4c;
   border-left: 1rem solid #fc6177;
@@ -75,15 +75,22 @@
 }
 
 .toDosContainer .taskCard .task.complete {
-  background-color: rgba(128, 128, 128, 0.565);
-  color: gray;
+  background-color: rgba(128, 128, 128, 0.744);
+  -webkit-box-shadow: rgba(230, 230, 241, 0.462) 0px 13px 27px -5px, rgba(218, 210, 210, 0.51) 0px 8px 16px -8px;
+          box-shadow: rgba(230, 230, 241, 0.462) 0px 13px 27px -5px, rgba(218, 210, 210, 0.51) 0px 8px 16px -8px;
+  color: #3a3737;
   border-left: 1rem solid #1bdacf;
 }
 
 .toDosContainer .taskCard .task.complete .btns .btn {
   border: none;
   background-color: transparent;
-  color: gray;
+  color: #3a3737;
+}
+
+.toDosContainer .taskCard .task.complete .btns .btn:disabled {
+  border: none;
+  color: #3a3737;
 }
 
 .toDosContainer .taskCard .task p {
@@ -101,10 +108,11 @@
 .toDosContainer .taskCard .task .btns .btn:hover, .toDosContainer .taskCard .task .btns .btn:focus {
   font-weight: bold;
   background-position: right center;
-  border: 0.1rem solid white;
+  border: 0.1rem solid #7e0d4c;
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+  color: white;
 }
 
 .toDosContainer .msg {

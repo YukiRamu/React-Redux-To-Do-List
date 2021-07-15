@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { addToDo } from '../../features/ToDoSlice';
+import { addToDo } from '../../redux/ToDoSlice';
 import "./ToDoInput.css";
 import uuid from 'react-uuid';
 import { Form, Button } from 'react-bootstrap';
@@ -9,9 +9,6 @@ import { FiAlertOctagon } from "react-icons/fi";
 
 const ToDoInput = () => {
 
-  //Use context file
-  //const { dispatchToDoList } = useContext(ToDoContext);
-
   //Use dispatch method from redux
   const dispatchToDoList = useDispatch();
 
@@ -19,10 +16,8 @@ const ToDoInput = () => {
   const [item, setItem] = useState("");
   const [error, setError] = useState("");
 
-
   const addToDoItem = (e) => {
     e.preventDefault();
-    console.log(item);
 
     if (item === "") {
       setError("Please enter your task");
