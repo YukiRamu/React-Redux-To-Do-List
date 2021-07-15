@@ -160,6 +160,7 @@ const ToDoList = () => {
                       <p>{elem.item}</p> :
                       <Form.Control
                         type="text"
+                        className="editBox"
                         value={editItem}
                         onChange={e => setEditItem(e.target.value)} />
                     }
@@ -201,13 +202,15 @@ const ToDoList = () => {
                     data-id={elem.id}
                     className={[
                       "col-md-5 col-lg-4 col-xl-3 task tabletTask",
-                      elem.isCompleted ? "complete" : "imcomplete"
+                      elem.isCompleted && "complete"
                     ].join(' ')}>
 
                     {!elem.isEditing ?
                       <p>{elem.item}</p> :
                       <Form.Control
-                        type="text"
+                        as="textarea"
+                        //wrap="soft"
+                        className="editBox"
                         value={editItem}
                         onChange={e => setEditItem(e.target.value)} />
                     }
