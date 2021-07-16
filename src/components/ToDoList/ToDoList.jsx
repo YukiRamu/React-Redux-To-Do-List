@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { ToDoListSelector, deleteToDo, statusChange } from '../../redux/ToDoSlice';
 import "./ToDoList.css";
-import { Form, Row, Button, Col } from 'react-bootstrap';
+import { Form, Row, Button, Col, Alert, Modal } from 'react-bootstrap';
 import { AiFillEdit, AiFillDelete, AiFillCheckSquare } from "react-icons/ai";
 import MediaQueryContext from '../../contexts/MediaQueryContext';
 
@@ -21,23 +21,10 @@ const ToDoList = () => {
 
   //Private state hook
   const [editItem, setEditItem] = useState("");
+  const [alert, setAlert] = useState("test alert");
+  const [smShow, setSmShow] = useState(false);
 
   //methods
-  /* complete */
-  // const completeToDoItem = (id) => {
-  //   //find which item is completed
-  //   let compItem = toDoList.filter(elem => elem.id === id);
-
-  //   //change IsCompleted flag and dispatch
-  //   dispatchToDoList(completeToDo({
-  //     item: compItem[0].item,
-  //     isCompleted: true, //change
-  //     isDeleted: false,
-  //     isEditing: false,
-  //     id: compItem[0].id
-  //   }));
-  // };
-
   /* delete */
   const deleteToDoItem = (id) => {
     //find which item is completed  -----> will be refactored. just pass id or index. isDeleted  not needed
@@ -53,31 +40,13 @@ const ToDoList = () => {
     }));
   };
 
-  /* edit */
-  // const editToDoItem = (id) => {
-  //   //find which item is edited
-  //   let editItem = toDoList.filter(elem => elem.id === id);
-  //   console.log(editItem);
-
-  //   //change isEditing flag and dispatch
-  //   dispatchToDoList(editToDo({
-  //     item: editItem[0].item,
-  //     isCompleted: editItem[0].isCompleted,
-  //     isDeleted: editItem[0],
-  //     isEditing: true,//change
-  //     id: editItem[0].id,
-  //   }));
-  // };
-
   /* status change - complete, edit, or save*/
   const itemStatusChange = (id, status) => {
-
-    console.log("editing item is ", editItem);
 
     //find which item is edited
     let targetItem = toDoList.filter(elem => elem.id === id);
 
-    //payload object
+    //prepare payload object
     const payload = {
       item: targetItem[0].item,
       isCompleted: false,
@@ -86,48 +55,29 @@ const ToDoList = () => {
       id: targetItem[0].id,
     };
 
-    //change flag based on status
-    switch (status) {
-      case "complete":
-        payload.isCompleted = true;
-        dispatchToDoList(statusChange(payload));
-        break;
-      case "edit":
-        setEditItem(targetItem[0].item); //to show the current task in the input field
-        payload.isEditing = true;
-        dispatchToDoList(statusChange(payload));
-        break;
-      case "save":
-        payload.item = editItem;
-        payload.isEditing = false;
-        dispatchToDoList(statusChange(payload));
-        break;
-      default:
-        Error("Invalid status");
-        break;
-    }
+    //prepare action methods
+    const completeAction = () => {
+      payload.isCompleted = true;
+      return payload;
+    };
 
-    // try {
-    //   //change flag based on status
-    //   switch (status) {
-    //     case "complete":
-    //       payload.isCompleted = true;
-    //       break;
-    //     case "edit":
-    //       payload.isEditing = true;
-    //       break;
-    //     case "save":
-    //       payload.isEditing = false;
-    //       break;
-    //     default:
-    //       Error("Invalid status");
-    //       break;
-    //   }
-    // } catch (error) {
-    //   console.error(`${error} something went wrong`);
-    // } finally {
-    //   dispatchToDoList(statusChange(payload));
-    // }
+    const editAction = () => {
+      setEditItem(targetItem[0].item); //to show the current task in the input field
+      payload.isEditing = true;
+      return payload;
+    };
+
+    const saveAction = () => {
+      payload.item = editItem;
+      payload.isEditing = false;
+      return payload;
+    };
+
+    //dispatch payload based on status
+    if (status === undefined) throw new Error("Invalid status");
+    status === "complete" && dispatchToDoList(statusChange(completeAction()));
+    status === "edit" && dispatchToDoList(statusChange(editAction()));
+    status === "save" && dispatchToDoList(statusChange(saveAction()));
 
   };
 
@@ -136,6 +86,22 @@ const ToDoList = () => {
       <div className="toDosContainer">
         {!toDoList.length == 0 ? (
           <>
+            {/* Alert Modal for editing */}
+            {alert &&
+              <Modal
+                size="sm"
+                show={smShow}
+                onHide={() => setSmShow(false)}
+                aria-labelledby="example-modal-sizes-title-sm"
+              >
+                <Modal.Header closeButton>
+                  <Modal.Title id="example-modal-sizes-title-sm">
+                    Small Modal
+                  </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>...</Modal.Body>
+              </Modal>}
+
             {/* Filter */}
             <div className="filter">
               <Button>In Progress</Button>

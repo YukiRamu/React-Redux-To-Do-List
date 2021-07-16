@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import ToDoReducer from "../redux/ToDoSlice";
+import ToDoReducer from "./ToDoSlice";
 import { save, load } from 'redux-localstorage-simple';
 
 export const store = configureStore({
