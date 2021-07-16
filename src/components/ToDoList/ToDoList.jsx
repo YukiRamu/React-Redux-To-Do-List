@@ -2,9 +2,10 @@ import React, { useContext, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { ToDoListSelector, deleteToDo, statusChange } from '../../redux/ToDoSlice';
 import "./ToDoList.css";
-import { Form, Row, Button, Col, Alert, Modal } from 'react-bootstrap';
+import { Form, Row, Button, Col, Modal } from 'react-bootstrap';
 import { AiFillEdit, AiFillDelete, AiFillCheckSquare } from "react-icons/ai";
 import MediaQueryContext from '../../contexts/MediaQueryContext';
+import ToDoFilter from '../ToDoFilter/ToDoFilter';
 
 const ToDoList = () => {
 
@@ -21,8 +22,7 @@ const ToDoList = () => {
 
   //Private state hook
   const [editItem, setEditItem] = useState("");
-  const [alert, setAlert] = useState("test alert");
-  const [smShow, setSmShow] = useState(false);
+  const [alertModal, setAlertModal] = useState(false);
 
   //methods
   /* delete */
@@ -43,7 +43,7 @@ const ToDoList = () => {
   /* status change - complete, edit, or save*/
   const itemStatusChange = (id, status) => {
 
-    //find which item is edited
+    //find which item is on target
     let targetItem = toDoList.filter(elem => elem.id === id);
 
     //prepare payload object
@@ -68,9 +68,10 @@ const ToDoList = () => {
     };
 
     const saveAction = () => {
-      payload.item = editItem;
-      payload.isEditing = false;
-      return payload;
+      //input validation check
+      editItem === "" ?
+        setAlertModal(true)
+        : payload.item = editItem; payload.isEditing = false; return payload;
     };
 
     //dispatch payload based on status
@@ -78,7 +79,6 @@ const ToDoList = () => {
     status === "complete" && dispatchToDoList(statusChange(completeAction()));
     status === "edit" && dispatchToDoList(statusChange(editAction()));
     status === "save" && dispatchToDoList(statusChange(saveAction()));
-
   };
 
   return (
@@ -86,27 +86,8 @@ const ToDoList = () => {
       <div className="toDosContainer">
         {!toDoList.length == 0 ? (
           <>
-            {/* Alert Modal for editing */}
-            {alert &&
-              <Modal
-                size="sm"
-                show={smShow}
-                onHide={() => setSmShow(false)}
-                aria-labelledby="example-modal-sizes-title-sm"
-              >
-                <Modal.Header closeButton>
-                  <Modal.Title id="example-modal-sizes-title-sm">
-                    Small Modal
-                  </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>...</Modal.Body>
-              </Modal>}
-
             {/* Filter */}
-            <div className="filter">
-              <Button>In Progress</Button>
-              <Button>Done</Button>
-            </div>
+            <ToDoFilter />
 
             {/* To do list */}
             {/* Smartphone and Landscape view */}
@@ -210,6 +191,23 @@ const ToDoList = () => {
           </>
         ) : (<h2 className="msg">No task left :) Good job!</h2>)}
       </div>
+      {/* Alert Modal for editing */}
+      {alertModal &&
+        <Modal
+          className="alertModal"
+          show={alertModal}
+          onHide={() => setAlertModal(false)}
+          aria-labelledby="example-modal-sizes-title-sm"
+        >
+          <Modal.Header>
+            <Modal.Title id="example-modal-sizes-title-sm" className="alert">
+              Please enter your task
+            </Modal.Title>
+            <Button
+              className="clsBtn"
+              onClick={() => setAlertModal(false)}>Close</Button>
+          </Modal.Header>
+        </Modal>}
     </>
   );
 };

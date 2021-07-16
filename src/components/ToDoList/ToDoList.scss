@@ -2,26 +2,6 @@
 
 .toDosContainer {
   margin-top: 1rem;
-  /* Filter*/
-  .filter {
-    text-align: center;
-    margin-bottom: 1rem;
-    .btn {
-      color: $textColor;
-      border: none;
-      background-color: transparent;
-      border-radius: unset;
-      margin: 0 0.5rem;
-      &:hover,
-      &:focus {
-        font-weight: bold;
-        background-position: right center;
-        border-bottom: 0.1rem solid $white;
-        outline: none;
-        box-shadow: none;
-      }
-    }
-  }
   /* List */
   .taskCard {
     width: 100%;
@@ -65,6 +45,7 @@
         width: 60%;
         height: 100%;
         text-align: left;
+        border-radius: 1vw;
         &:focus {
           outline: none;
           box-shadow: none;
@@ -107,6 +88,7 @@
         .editBox {
           width: 50%;
           font-size: 1.5rem;
+          border-radius: 0.5vw;
         }
         p {
           width: 50%;
@@ -121,5 +103,27 @@
   /* no task left */
   .msg {
     text-align: center;
+  }
+}
+
+/* Alert for editing items */
+.alertModal {
+  .modal-header {
+    .alert {
+      color: $gray;
+    }
+    .clsBtn {
+      color: $white;
+      border: $white 0.1rem solid;
+      background-color: $main;
+      &:hover,
+      &:focus {
+        background-position: right center;
+        background-color: $progress;
+        border: 0.1rem solid $white;
+        outline: none;
+        box-shadow: none;
+      }
+    }
   }
 }

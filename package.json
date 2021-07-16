@@ -43,5 +43,8 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://yukiramu.github.io/React-Redux-To-Do-List/"
+  "homepage": "https://yukiramu.github.io/React-Redux-To-Do-List/",
+  "devDependencies": {
+    "gh-pages": "^3.2.3"
+  }
 }

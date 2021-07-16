@@ -1,30 +1,7 @@
 .toDosContainer {
   margin-top: 1rem;
-  /* Filter*/
   /* List */
   /* no task left */
-}
-
-.toDosContainer .filter {
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.toDosContainer .filter .btn {
-  color: #7e0d4c;
-  border: none;
-  background-color: transparent;
-  border-radius: unset;
-  margin: 0 0.5rem;
-}
-
-.toDosContainer .filter .btn:hover, .toDosContainer .filter .btn:focus {
-  font-weight: bold;
-  background-position: right center;
-  border-bottom: 0.1rem solid white;
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
 }
 
 .toDosContainer .taskCard {
@@ -86,6 +63,7 @@
   width: 60%;
   height: 100%;
   text-align: left;
+  border-radius: 1vw;
 }
 
 .toDosContainer .taskCard .task .editBox:focus {
@@ -138,6 +116,7 @@
 .toDosContainer .taskCard .task.tabletTask .editBox {
   width: 50%;
   font-size: 1.5rem;
+  border-radius: 0.5vw;
 }
 
 .toDosContainer .taskCard .task.tabletTask p {
@@ -151,5 +130,25 @@
 
 .toDosContainer .msg {
   text-align: center;
+}
+
+/* Alert for editing items */
+.alertModal .modal-header .alert {
+  color: #3a3737;
+}
+
+.alertModal .modal-header .clsBtn {
+  color: white;
+  border: white 0.1rem solid;
+  background-color: #dd3144;
+}
+
+.alertModal .modal-header .clsBtn:hover, .alertModal .modal-header .clsBtn:focus {
+  background-position: right center;
+  background-color: #fc6177;
+  border: 0.1rem solid white;
+  outline: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 /*# sourceMappingURL=ToDoList.css.map */
