@@ -15,9 +15,28 @@
 .filter .btn:hover, .filter .btn:focus {
   font-weight: bold;
   background-position: right center;
-  border-bottom: 0.1rem solid white;
   outline: none;
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+
+.filter .btn.selected {
+  font-size: 1.3rem;
+  background-color: rgba(255, 255, 255, 0.441);
+  border-radius: 1vw;
+  -webkit-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+          box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.filter .showAll.selected {
+  color: #dd3144;
+}
+
+.filter .InprogressFilter.selected {
+  color: #fc6177;
+}
+
+.filter .compFilter.selected {
+  color: #1bdacf;
 }
 /*# sourceMappingURL=ToDoFilter.css.map */

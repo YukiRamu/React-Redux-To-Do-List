@@ -12,13 +12,13 @@ const ToDoList = () => {
   //Responsive design
   const { isSmartPhone, isMobile, isTablet, isDesktop, isLargeDesktop } = useContext(MediaQueryContext);
 
-  //Get state from slice.jsx
+  //Get state from ToDoSlice.jsx
   const toDoList = useSelector(ToDoListSelector);
 
   console.log("I am here", toDoList);
 
   //Use dispatch method from redux
-  const dispatchToDoList = useDispatch();
+  const dispatch = useDispatch();
 
   //Private state hook
   const [editItem, setEditItem] = useState("");
@@ -31,7 +31,7 @@ const ToDoList = () => {
     let delItem = toDoList.filter(elem => elem.id === id);
 
     //change isDeleted flag and dispatch
-    dispatchToDoList(deleteToDo({
+    dispatch(deleteToDo({
       item: delItem[0].item,
       isCompleted: delItem[0].isCompleted,
       isDeleted: true, //change
@@ -78,9 +78,9 @@ const ToDoList = () => {
 
     //dispatch payload based on status
     if (status === undefined) throw new Error("Invalid status");
-    status === "complete" && dispatchToDoList(statusChange(completeAction()));
-    status === "edit" && dispatchToDoList(statusChange(editAction()));
-    status === "save" && dispatchToDoList(statusChange(saveAction()));
+    status === "complete" && dispatch(statusChange(completeAction()));
+    status === "edit" && dispatch(statusChange(editAction()));
+    status === "save" && dispatch(statusChange(saveAction()));
   };
 
   return (

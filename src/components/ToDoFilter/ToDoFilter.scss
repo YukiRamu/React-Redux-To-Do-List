@@ -14,9 +14,29 @@
     &:focus {
       font-weight: bold;
       background-position: right center;
-      border-bottom: 0.1rem solid $white;
       outline: none;
       box-shadow: none;
+    }
+    &.selected {
+      font-size: 1.3rem;
+      background-color: $whiteTr;
+      border-radius: 1vw;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    }
+  }
+  .showAll {
+    &.selected {
+      color: $main;
+    }
+  }
+  .InprogressFilter {
+    &.selected {
+      color: $progress;
+    }
+  }
+  .compFilter {
+    &.selected {
+      color: $complete;
     }
   }
 }

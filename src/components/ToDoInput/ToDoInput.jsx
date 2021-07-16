@@ -1,21 +1,26 @@
 import React, { useState } from 'react';
-import { useDispatch } from "react-redux";
-import { addToDo } from '../../redux/ToDoSlice';
+import { useSelector, useDispatch } from "react-redux";
+import { addToDo, filterToDo, ToDoListSelector } from '../../redux/ToDoSlice';
+import { FilterSelector, changeFilter } from '../../redux/FilterSlice';
 import "./ToDoInput.css";
 import uuid from 'react-uuid';
 import { Form, Button } from 'react-bootstrap';
 import { FiAlertOctagon } from "react-icons/fi";
-//import ToDoContext from '../../contexts/ToDoContext';
 
 const ToDoInput = () => {
 
-  //Use dispatch method from redux
-  const dispatchToDoList = useDispatch();
+  //Get state from ToDoSlice.jsx
+  const toDoList = useSelector(ToDoListSelector);
+  const filter = useSelector(FilterSelector);
 
-  //Private state hook
+  //Use dispatch method from redux 
+  const dispatch = useDispatch();
+
+  //Private state hook for the input
   const [item, setItem] = useState("");
   const [error, setError] = useState("");
 
+  //method
   const addToDoItem = (e) => {
     e.preventDefault();
 
@@ -23,8 +28,25 @@ const ToDoInput = () => {
       setError("Please enter your task");
       setTimeout(() => { setError(""); }, 2000);
     } else {
-      //dispatch
-      dispatchToDoList(addToDo({
+      /* dispatch */
+      //#1 update visibility - show all for the existing toDos
+      //prepare action methods
+      const showAllAction = () => {
+        return toDoList.map(elem => (
+          {
+            item: elem.item,
+            isCompleted: elem.isCompleted,
+            isDeleted: elem.isDeleted,
+            isEditing: elem.isEditing,
+            isVisible: true, //show all
+            id: elem.id
+          }
+        ));
+      };
+      dispatch(filterToDo(showAllAction()));
+
+      //#2 add to do
+      dispatch(addToDo({
         item: item,
         isCompleted: false,
         isDeleted: false,
@@ -32,6 +54,10 @@ const ToDoInput = () => {
         isVisible: true,
         id: uuid()
       }));
+
+      //#3 change filter to all
+      dispatch(changeFilter("all"));
+
       //clear input
       setItem("");
     }
