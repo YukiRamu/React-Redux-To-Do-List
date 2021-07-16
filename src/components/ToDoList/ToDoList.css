@@ -88,8 +88,13 @@
 }
 
 .toDosContainer .taskCard .task .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   width: 40%;
-  text-align: right;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .toDosContainer .taskCard .task .btns .btn {

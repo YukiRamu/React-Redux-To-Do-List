@@ -29,6 +29,7 @@ const ToDoInput = () => {
         isCompleted: false,
         isDeleted: false,
         isEditing: false,
+        isVisible: true,
         id: uuid()
       }));
       //clear input

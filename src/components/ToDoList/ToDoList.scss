@@ -64,8 +64,9 @@
         text-align: left;
       }
       .btns {
+        display: flex;
         width: 40%;
-        text-align: right;
+        justify-content: flex-end;
         .btn {
           color: $textColor;
           border: none;

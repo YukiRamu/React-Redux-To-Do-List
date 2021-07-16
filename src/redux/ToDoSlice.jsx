@@ -7,7 +7,8 @@ const ToDoSlice = createSlice({
   reducers: {
     //define action methods -- needs to return
     addToDo: (state, action) => {
-      state.push(action.payload);
+      //state.push(action.payload);
+      return [...state, action.payload];
       //////////// add to local storage ////////////
     },
     deleteToDo: (state, action) => {
@@ -16,14 +17,16 @@ const ToDoSlice = createSlice({
     },
     statusChange: (state, action) => {
       //complete, edit, or save
-      console.log(action.payload);
       //update state
       state.map((elem, index) => elem.id == action.payload.id && state.splice(index, 1, action.payload));
+    },
+    filterToDo: (state, action) => {
+      return action.payload;
     }
   }
 });
 
 //export reducer, actions,and state(selector)
 export default ToDoSlice.reducer;
-export const { addToDo, deleteToDo, statusChange } = ToDoSlice.actions;
+export const { addToDo, deleteToDo, statusChange, filterToDo } = ToDoSlice.actions;
 export const ToDoListSelector = state => state.toDo;

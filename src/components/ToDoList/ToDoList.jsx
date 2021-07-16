@@ -36,12 +36,13 @@ const ToDoList = () => {
       isCompleted: delItem[0].isCompleted,
       isDeleted: true, //change
       isEditing: delItem[0].isEditing,
+      isVisible: true,
       id: delItem[0].id,
     }));
   };
 
   /* status change - complete, edit, or save*/
-  const itemStatusChange = (id, status) => {
+  const changeItemStatus = (id, status) => {
 
     //find which item is on target
     let targetItem = toDoList.filter(elem => elem.id === id);
@@ -52,6 +53,7 @@ const ToDoList = () => {
       isCompleted: false,
       isDeleted: false,
       isEditing: false,
+      isVisible: true,
       id: targetItem[0].id,
     };
 
@@ -93,6 +95,8 @@ const ToDoList = () => {
             {/* Smartphone and Landscape view */}
             {(isSmartPhone || isMobile) && <>
               {toDoList.map(elem => (
+                //show only "isVisible is true" items
+                elem.isVisible === true &&
                 <Row
                   key={elem.id}
                   className="taskCard" >
@@ -116,18 +120,18 @@ const ToDoList = () => {
                       {/* complete */}
                       <Button
                         className="compBtn"
-                        onClick={() => itemStatusChange(elem.id, "complete")}
+                        onClick={() => changeItemStatus(elem.id, "complete")}
                         disabled={elem.isCompleted || elem.isEditing ? true : false}>Done</Button>
 
                       {/* edit */}
                       {!elem.isEditing ?
                         <Button
                           className="editBtn"
-                          onClick={() => itemStatusChange(elem.id, "edit")}
+                          onClick={() => changeItemStatus(elem.id, "edit")}
                           disabled={elem.isCompleted ? true : false}><AiFillEdit /></Button> :
                         <Button
                           className="saveBtn"
-                          onClick={() => itemStatusChange(elem.id, "save")}><AiFillCheckSquare /></Button>}
+                          onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
 
                       {/* delete */}
                       <Button
@@ -145,6 +149,8 @@ const ToDoList = () => {
                 key={toDoList.id}
                 className="taskCard tablet" >
                 {toDoList.map(elem => (
+                  //show only "isVisible is true" items
+                  elem.isVisible === true &&
                   <Col
                     data-id={elem.id}
                     className={[
@@ -166,18 +172,18 @@ const ToDoList = () => {
                       {/* complete */}
                       <Button
                         className="compBtn"
-                        onClick={() => itemStatusChange(elem.id, "complete")}
+                        onClick={() => changeItemStatus(elem.id, "complete")}
                         disabled={elem.isCompleted || elem.isEditing ? true : false}>Done</Button>
 
                       {/* edit */}
                       {!elem.isEditing ?
                         <Button
                           className="editBtn"
-                          onClick={() => itemStatusChange(elem.id, "edit")}
+                          onClick={() => changeItemStatus(elem.id, "edit")}
                           disabled={elem.isCompleted ? true : false}><AiFillEdit /></Button> :
                         <Button
                           className="saveBtn"
-                          onClick={() => itemStatusChange(elem.id, "save")}><AiFillCheckSquare /></Button>}
+                          onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
 
                       {/* delete */}
                       <Button
