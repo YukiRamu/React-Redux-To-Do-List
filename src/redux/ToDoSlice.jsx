@@ -1,15 +1,32 @@
 /* Slice.jsx handles all basic configuration on Redux */
 import { createSlice } from '@reduxjs/toolkit';
+import { load } from 'redux-localstorage-simple';
+
+const initialization = () => {
+  //get to do data from localStorage
+  if (load({ states: ["toDo"] }).hasOwnProperty("toDo")) {
+    return load({ states: ["toDo"] }).toDo.map(elem => (
+      {
+        item: elem.item,
+        isCompleted: elem.isCompleted,
+        isDeleted: elem.isDeleted,
+        isEditing: false,//always non-editing mode
+        isVisible: true, //always show all
+        id: elem.id
+      }
+    ));
+  } else {
+    return [];
+  }
+};
 
 const ToDoSlice = createSlice({
   name: "toDo",
-  initialState: [],
+  initialState: initialization(),
   reducers: {
-    //define action methods -- needs to return
     addToDo: (state, action) => {
-      //state.push(action.payload);
+      //update state
       return [...state, action.payload];
-      //////////// add to local storage ////////////
     },
     deleteToDo: (state, action) => {
       //delete from state

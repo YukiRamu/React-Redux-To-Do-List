@@ -24,42 +24,49 @@ const ToDoInput = () => {
   const addToDoItem = (e) => {
     e.preventDefault();
 
-    if (item === "") {
-      setError("Please enter your task");
-      setTimeout(() => { setError(""); }, 2000);
+    //if it is an editing mode, show alert and return false;
+    if (filter.editMode) {
+      alert("Oops! You haven't save your task.");
+      return false;
     } else {
-      /* dispatch */
-      //#1 update visibility - show all for the existing toDos
-      //prepare action methods
-      const showAllAction = () => {
-        return toDoList.map(elem => (
-          {
-            item: elem.item,
-            isCompleted: elem.isCompleted,
-            isDeleted: elem.isDeleted,
-            isEditing: elem.isEditing,
-            isVisible: true, //show all
-            id: elem.id
-          }
-        ));
-      };
-      dispatch(filterToDo(showAllAction()));
+      //validation check
+      if (item === "") {
+        setError("Please enter your task");
+        setTimeout(() => { setError(""); }, 2000);
+      } else {
+        /* dispatch */
+        //#1 update visibility - filter back to "show all"
+        //prepare action methods
+        const showAllAction = () => {
+          return toDoList.map(elem => (
+            {
+              item: elem.item,
+              isCompleted: elem.isCompleted,
+              isDeleted: elem.isDeleted,
+              isEditing: elem.isEditing,
+              isVisible: true, //show all
+              id: elem.id
+            }
+          ));
+        };
+        dispatch(filterToDo(showAllAction()));
 
-      //#2 add to do
-      dispatch(addToDo({
-        item: item,
-        isCompleted: false,
-        isDeleted: false,
-        isEditing: false,
-        isVisible: true,
-        id: uuid()
-      }));
+        //#2 add to do
+        dispatch(addToDo({
+          item: item,
+          isCompleted: false,
+          isDeleted: false,
+          isEditing: false,
+          isVisible: true,
+          id: uuid()
+        }));
 
-      //#3 change filter to all
-      dispatch(changeFilter("all"));
+        //#3 change filter to all
+        dispatch(changeFilter("all"));
 
-      //clear input
-      setItem("");
+        //clear input
+        setItem("");
+      }
     }
   };
 

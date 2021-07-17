@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { ToDoListSelector, deleteToDo, statusChange } from '../../redux/ToDoSlice';
+import { FilterSelector, changeEditMode } from '../../redux/FilterSlice';
 import "./ToDoList.css";
 import { Form, Row, Button, Col, Modal } from 'react-bootstrap';
 import { AiFillEdit, AiFillDelete, AiFillCheckSquare } from "react-icons/ai";
@@ -14,8 +15,7 @@ const ToDoList = () => {
 
   //Get state from ToDoSlice.jsx
   const toDoList = useSelector(ToDoListSelector);
-
-  console.log("I am here", toDoList);
+  const filter = useSelector(FilterSelector);
 
   //Use dispatch method from redux
   const dispatch = useDispatch();
@@ -23,9 +23,6 @@ const ToDoList = () => {
   //Private state hook
   const [editItem, setEditItem] = useState("");
   const [alertModal, setAlertModal] = useState(false);
-  const [editMode, setEditMode] = useState(false);
-
-  console.log("editing mode is ", editMode);
 
   //methods
   /* delete */
@@ -67,14 +64,14 @@ const ToDoList = () => {
     };
 
     const editAction = () => {
-      setEditMode(true); //change to editing mode
+      // setEditMode(true); //change to editing mode
       setEditItem(targetItem[0].item); //to show the current task in the input field
       payload.isEditing = true;
       return payload;
     };
 
     const saveAction = () => {
-      setEditMode(false); //change back to non-ediding mode
+      //  setEditMode(false); //change back to non-ediding mode
       //input validation check
       editItem === "" ?
         setAlertModal(true)
@@ -82,10 +79,21 @@ const ToDoList = () => {
     };
 
     //dispatch payload based on status
-    if (status === undefined) throw new Error("Invalid status");
-    status === "complete" && dispatch(statusChange(completeAction()));
-    status === "edit" && dispatch(statusChange(editAction()));
-    status === "save" && dispatch(statusChange(saveAction()));
+    switch (status) {
+      case "complete":
+        dispatch(statusChange(completeAction()));
+        break;
+      case "edit":
+        dispatch(statusChange(editAction()));
+        dispatch(changeEditMode(true));
+        break;
+      case "save":
+        dispatch(statusChange(saveAction()));
+        dispatch(changeEditMode(false));
+        break;
+      default:
+        throw Error("Invalid status");
+    }
   };
 
   return (
@@ -130,13 +138,13 @@ const ToDoList = () => {
                         disabled={elem.isCompleted || elem.isEditing ? true : false}>Done</Button>
 
                       {/* edit: hide when one item is being editted */}
-                      {!editMode && <Button
+                      {!filter.editMode && <Button
                         className="editBtn"
                         onClick={() => changeItemStatus(elem.id, "edit")}
-                        disabled={elem.isCompleted || editMode ? true : false}><AiFillEdit /></Button>}
+                        disabled={elem.isCompleted || filter.editMode ? true : false}><AiFillEdit /></Button>}
 
                       {/* save : show only on the item being editted */}
-                      {editMode && elem.isEditing && <Button
+                      {filter.editMode && elem.isEditing && <Button
                         className="saveBtn"
                         onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
 
@@ -184,13 +192,13 @@ const ToDoList = () => {
                         disabled={elem.isCompleted || elem.isEditing ? true : false}>Done</Button>
 
                       {/* edit: hide when one item is being editted */}
-                      {!editMode && <Button
+                      {!filter.editMode && <Button
                         className="editBtn"
                         onClick={() => changeItemStatus(elem.id, "edit")}
-                        disabled={elem.isCompleted || editMode ? true : false}><AiFillEdit /></Button>}
+                        disabled={elem.isCompleted || filter.editMode ? true : false}><AiFillEdit /></Button>}
 
                       {/* save : show only on the item being editted */}
-                      {editMode && elem.isEditing && <Button
+                      {filter.editMode && elem.isEditing && <Button
                         className="saveBtn"
                         onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
 

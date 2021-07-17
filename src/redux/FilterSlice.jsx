@@ -3,17 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const FilterSlice = createSlice({
   name: "filter",
-  initialState: "all", //all, inProgress, or complete
+  initialState: { filter: "all", editMode: false }, //all, inProgress, or complete & boolean
   reducers: {
     //define action methods -- needs to return
     changeFilter: (state, action) => {
-      console.log(action.payload);
-      return action.payload;
+      return { ...state, filter: action.payload };
+    },
+    changeEditMode: (state, action) => {
+      return { ...state, editMode: action.payload };
     }
   }
 });
 
 //export reducer, actions,and state(selector)
 export default FilterSlice.reducer;
-export const { changeFilter } = FilterSlice.actions;
+export const { changeFilter, changeEditMode } = FilterSlice.actions;
 export const FilterSelector = state => state.filter;
