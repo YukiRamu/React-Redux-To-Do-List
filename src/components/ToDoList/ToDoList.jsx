@@ -23,6 +23,9 @@ const ToDoList = () => {
   //Private state hook
   const [editItem, setEditItem] = useState("");
   const [alertModal, setAlertModal] = useState(false);
+  const [editMode, setEditMode] = useState(false);
+
+  console.log("editing mode is ", editMode);
 
   //methods
   /* delete */
@@ -50,10 +53,10 @@ const ToDoList = () => {
     //prepare payload object
     const payload = {
       item: targetItem[0].item,
-      isCompleted: false,
-      isDeleted: false,
-      isEditing: false,
-      isVisible: true,
+      isCompleted: false, //status flag
+      isDeleted: false, //status flag
+      isEditing: false, //status flag
+      isVisible: true, //filter flag, default "all"
       id: targetItem[0].id,
     };
 
@@ -64,12 +67,14 @@ const ToDoList = () => {
     };
 
     const editAction = () => {
+      setEditMode(true); //change to editing mode
       setEditItem(targetItem[0].item); //to show the current task in the input field
       payload.isEditing = true;
       return payload;
     };
 
     const saveAction = () => {
+      setEditMode(false); //change back to non-ediding mode
       //input validation check
       editItem === "" ?
         setAlertModal(true)
@@ -104,7 +109,8 @@ const ToDoList = () => {
                     data-id={elem.id}
                     className={[
                       "task",
-                      elem.isCompleted && "complete"
+                      elem.isCompleted && "complete",
+                      elem.isEditing && "editing"
                     ].join(' ')}>
 
                     {!elem.isEditing ?
@@ -123,15 +129,16 @@ const ToDoList = () => {
                         onClick={() => changeItemStatus(elem.id, "complete")}
                         disabled={elem.isCompleted || elem.isEditing ? true : false}>Done</Button>
 
-                      {/* edit */}
-                      {!elem.isEditing ?
-                        <Button
-                          className="editBtn"
-                          onClick={() => changeItemStatus(elem.id, "edit")}
-                          disabled={elem.isCompleted ? true : false}><AiFillEdit /></Button> :
-                        <Button
-                          className="saveBtn"
-                          onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
+                      {/* edit: hide when one item is being editted */}
+                      {!editMode && <Button
+                        className="editBtn"
+                        onClick={() => changeItemStatus(elem.id, "edit")}
+                        disabled={elem.isCompleted || editMode ? true : false}><AiFillEdit /></Button>}
+
+                      {/* save : show only on the item being editted */}
+                      {editMode && elem.isEditing && <Button
+                        className="saveBtn"
+                        onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
 
                       {/* delete */}
                       <Button
@@ -155,7 +162,8 @@ const ToDoList = () => {
                     data-id={elem.id}
                     className={[
                       "col-md-5 col-lg-4 col-xl-3 task tabletTask",
-                      elem.isCompleted && "complete"
+                      elem.isCompleted && "complete",
+                      elem.isEditing && "editing"
                     ].join(' ')}>
 
                     {!elem.isEditing ?
@@ -175,15 +183,16 @@ const ToDoList = () => {
                         onClick={() => changeItemStatus(elem.id, "complete")}
                         disabled={elem.isCompleted || elem.isEditing ? true : false}>Done</Button>
 
-                      {/* edit */}
-                      {!elem.isEditing ?
-                        <Button
-                          className="editBtn"
-                          onClick={() => changeItemStatus(elem.id, "edit")}
-                          disabled={elem.isCompleted ? true : false}><AiFillEdit /></Button> :
-                        <Button
-                          className="saveBtn"
-                          onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
+                      {/* edit: hide when one item is being editted */}
+                      {!editMode && <Button
+                        className="editBtn"
+                        onClick={() => changeItemStatus(elem.id, "edit")}
+                        disabled={elem.isCompleted || editMode ? true : false}><AiFillEdit /></Button>}
+
+                      {/* save : show only on the item being editted */}
+                      {editMode && elem.isEditing && <Button
+                        className="saveBtn"
+                        onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
 
                       {/* delete */}
                       <Button
