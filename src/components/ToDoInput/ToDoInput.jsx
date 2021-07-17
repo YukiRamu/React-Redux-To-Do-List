@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { addToDo, filterToDo, ToDoListSelector } from '../../redux/ToDoSlice';
 import { FilterSelector, changeFilter } from '../../redux/FilterSlice';
@@ -6,6 +6,7 @@ import "./ToDoInput.css";
 import uuid from 'react-uuid';
 import { Form, Button } from 'react-bootstrap';
 import { FiAlertOctagon } from "react-icons/fi";
+import { AlertContext } from '../AlertModal/AlertModal';
 
 const ToDoInput = () => {
 
@@ -18,7 +19,9 @@ const ToDoInput = () => {
 
   //Private state hook for the input
   const [item, setItem] = useState("");
-  const [error, setError] = useState("");
+
+  //Alert
+  const { setAlertModal } = useContext(AlertContext);
 
   //method
   const addToDoItem = (e) => {
@@ -26,13 +29,12 @@ const ToDoInput = () => {
 
     //if it is an editing mode, show alert and return false;
     if (filter.editMode) {
-      alert("Oops! You haven't save your task.");
+      setAlertModal({ show: true, msg: "Oops! You haven't save your task." });
       return false;
     } else {
       //validation check
       if (item === "") {
-        setError("Please enter your task");
-        setTimeout(() => { setError(""); }, 2000);
+        setAlertModal({ show: true, msg: "Please enter your task!" });
       } else {
         /* dispatch */
         //#1 update visibility - filter back to "show all"
@@ -83,7 +85,6 @@ const ToDoInput = () => {
           </Form.Group>
           <Button variant="outline-info" type="submit" className="addBtn">Add</Button>
         </Form>
-        {error && <p className="errorMsg"><FiAlertOctagon /> {error}</p>}
       </div>
     </>
   );

@@ -6,12 +6,15 @@ import { store } from './redux/store';
 import { Provider } from 'react-redux';
 import { MediaQueryProvider } from './contexts/MediaQueryContext';
 import * as serviceWorker from './serviceWorker';
+import AlertModal from "./components/AlertModal/AlertModal";
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <MediaQueryProvider>
-        <App />
+        <AlertModal>
+          <App />
+        </AlertModal>
       </MediaQueryProvider>
     </Provider>
   </React.StrictMode>,

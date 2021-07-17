@@ -3,15 +3,19 @@ import { useSelector, useDispatch } from "react-redux";
 import { ToDoListSelector, deleteToDo, statusChange } from '../../redux/ToDoSlice';
 import { FilterSelector, changeEditMode } from '../../redux/FilterSlice';
 import "./ToDoList.css";
-import { Form, Row, Button, Col, Modal } from 'react-bootstrap';
+import { Form, Row, Button, Col } from 'react-bootstrap';
 import { AiFillEdit, AiFillDelete, AiFillCheckSquare } from "react-icons/ai";
 import MediaQueryContext from '../../contexts/MediaQueryContext';
 import ToDoFilter from '../ToDoFilter/ToDoFilter';
+import { AlertContext } from '../AlertModal/AlertModal';
 
 const ToDoList = () => {
 
   //Responsive design
   const { isSmartPhone, isMobile, isTablet, isDesktop, isLargeDesktop } = useContext(MediaQueryContext);
+
+  //Alert
+  const { setAlertModal } = useContext(AlertContext);
 
   //Get state from ToDoSlice.jsx
   const toDoList = useSelector(ToDoListSelector);
@@ -22,7 +26,7 @@ const ToDoList = () => {
 
   //Private state hook
   const [editItem, setEditItem] = useState("");
-  const [alertModal, setAlertModal] = useState(false);
+  // const [alertModal, setAlertModal] = useState(false);
 
   //methods
   /* delete */
@@ -64,17 +68,15 @@ const ToDoList = () => {
     };
 
     const editAction = () => {
-      // setEditMode(true); //change to editing mode
       setEditItem(targetItem[0].item); //to show the current task in the input field
       payload.isEditing = true;
       return payload;
     };
 
     const saveAction = () => {
-      //  setEditMode(false); //change back to non-ediding mode
       //input validation check
       editItem === "" ?
-        setAlertModal(true)
+        setAlertModal({ show: true, msg: "Please enter your task!" })
         : payload.item = editItem; payload.isEditing = false; return payload;
     };
 
@@ -151,6 +153,7 @@ const ToDoList = () => {
                       {/* delete */}
                       <Button
                         className="deleteBtn"
+                        disabled={elem.isEditing ? true : false}
                         onClick={() => deleteToDoItem(elem.id)}><AiFillDelete /></Button>
                     </div>
                   </Col>
@@ -204,6 +207,7 @@ const ToDoList = () => {
                       {/* delete */}
                       <Button
                         className="deleteBtn"
+                        disabled={elem.isEditing ? true : false}
                         onClick={() => deleteToDoItem(elem.id)}><AiFillDelete /></Button>
                     </div>
                   </Col>
@@ -213,23 +217,6 @@ const ToDoList = () => {
           </>
         ) : (<h2 className="msg">No task left :) Good job!</h2>)}
       </div>
-      {/* Alert Modal for editing */}
-      {alertModal &&
-        <Modal
-          className="alertModal"
-          show={alertModal}
-          onHide={() => setAlertModal(false)}
-          aria-labelledby="example-modal-sizes-title-sm"
-        >
-          <Modal.Header>
-            <Modal.Title id="example-modal-sizes-title-sm" className="alert">
-              Please enter your task
-            </Modal.Title>
-            <Button
-              className="clsBtn"
-              onClick={() => setAlertModal(false)}>Close</Button>
-          </Modal.Header>
-        </Modal>}
     </>
   );
 };

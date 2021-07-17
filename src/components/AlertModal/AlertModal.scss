@@ -1,0 +1,23 @@
+@import "../../colors";
+
+/* Alert for editing items */
+.alertModal {
+  .modal-header {
+    .alert {
+      color: $gray;
+    }
+    .clsBtn {
+      color: $white;
+      border: $white 0.1rem solid;
+      background-color: $main;
+      &:hover,
+      &:focus {
+        background-position: right center;
+        background-color: $progress;
+        border: 0.1rem solid $white;
+        outline: none;
+        box-shadow: none;
+      }
+    }
+  }
+}

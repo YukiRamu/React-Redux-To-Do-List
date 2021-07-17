@@ -142,24 +142,4 @@
 .toDosContainer .msg {
   text-align: center;
 }
-
-/* Alert for editing items */
-.alertModal .modal-header .alert {
-  color: #3a3737;
-}
-
-.alertModal .modal-header .clsBtn {
-  color: white;
-  border: white 0.1rem solid;
-  background-color: #dd3144;
-}
-
-.alertModal .modal-header .clsBtn:hover, .alertModal .modal-header .clsBtn:focus {
-  background-position: right center;
-  background-color: #fc6177;
-  border: 0.1rem solid white;
-  outline: none;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
 /*# sourceMappingURL=ToDoList.css.map */

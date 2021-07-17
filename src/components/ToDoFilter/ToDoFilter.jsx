@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import { ToDoListSelector, filterToDo } from '../../redux/ToDoSlice';
 import { FilterSelector, changeFilter } from '../../redux/FilterSlice';
 import { Button } from 'react-bootstrap';
 import "./ToDoFilter.css";
+import { AlertContext } from '../AlertModal/AlertModal';
 
 const ToDoFilter = () => {
 
@@ -16,11 +17,14 @@ const ToDoFilter = () => {
   //Use dispatch method from redux
   const dispatch = useDispatch();
 
+  //Alert
+  const { setAlertModal } = useContext(AlertContext);
+
   //method
   const filterItem = (condition) => {
     //if it is an editing mode, show alert and return false;
     if (filter.editMode) {
-      alert("Oops! You haven't save your task.");
+      setAlertModal({ show: true, msg: "Oops! You haven't save your task." });
       return false;
     } else {
       //prepare action methods
