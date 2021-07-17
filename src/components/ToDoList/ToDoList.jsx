@@ -124,7 +124,7 @@ const ToDoList = () => {
                     {!elem.isEditing ?
                       <p>{elem.item}</p> :
                       <Form.Control
-                        type="text"
+                        as="textarea"
                         className="editBox"
                         value={editItem}
                         onChange={e => setEditItem(e.target.value)} />
@@ -137,13 +137,13 @@ const ToDoList = () => {
                         onClick={() => changeItemStatus(elem.id, "complete")}
                         disabled={elem.isCompleted || elem.isEditing ? true : false}>Done</Button>
 
-                      {/* edit: hide when one item is being editted */}
+                      {/* edit: hide when one item is being edited */}
                       {!filter.editMode && <Button
                         className="editBtn"
                         onClick={() => changeItemStatus(elem.id, "edit")}
                         disabled={elem.isCompleted || filter.editMode ? true : false}><AiFillEdit /></Button>}
 
-                      {/* save : show only on the item being editted */}
+                      {/* save : show only on the item being edited */}
                       {filter.editMode && elem.isEditing && <Button
                         className="saveBtn"
                         onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
@@ -178,7 +178,6 @@ const ToDoList = () => {
                       <p>{elem.item}</p> :
                       <Form.Control
                         as="textarea"
-                        //wrap="soft"
                         className="editBox"
                         value={editItem}
                         onChange={e => setEditItem(e.target.value)} />
@@ -191,13 +190,13 @@ const ToDoList = () => {
                         onClick={() => changeItemStatus(elem.id, "complete")}
                         disabled={elem.isCompleted || elem.isEditing ? true : false}>Done</Button>
 
-                      {/* edit: hide when one item is being editted */}
+                      {/* edit: hide when one item is being edited */}
                       {!filter.editMode && <Button
                         className="editBtn"
                         onClick={() => changeItemStatus(elem.id, "edit")}
                         disabled={elem.isCompleted || filter.editMode ? true : false}><AiFillEdit /></Button>}
 
-                      {/* save : show only on the item being editted */}
+                      {/* save : show only on the item being edited */}
                       {filter.editMode && elem.isEditing && <Button
                         className="saveBtn"
                         onClick={() => changeItemStatus(elem.id, "save")}><AiFillCheckSquare /></Button>}
