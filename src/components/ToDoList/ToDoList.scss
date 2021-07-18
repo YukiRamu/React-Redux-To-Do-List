@@ -9,7 +9,7 @@
     margin-bottom: 1rem;
     &.tablet {
       grid-gap: 1.5rem;
-      justify-content: space-evenly;
+      justify-content: center;
     }
     .task {
       display: flex;
@@ -104,10 +104,31 @@
           width: 50%;
         }
       }
+      //large desktop
+      &.deskTopTask {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.5vw;
+        .editBox {
+          margin: 0.5rem auto;
+          width: 100%;
+          border-radius: 0.5vw;
+        }
+        p {
+          width: 100%;
+          text-align: center;
+        }
+        .btns {
+          width: 100%;
+          justify-content: center;
+        }
+      }
     }
   }
   /* no task left */
   .msg {
     text-align: center;
+    color: $main;
   }
 }

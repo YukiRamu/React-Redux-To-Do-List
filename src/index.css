@@ -3,8 +3,6 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
   min-height: 100vh;
   color: white !important;
   font-family: "Philosopher", sans-serif !important;

@@ -18,19 +18,15 @@
     flex: 1;
   }
   footer {
-    // position: absolute;
-    // bottom: 0;
-    // left: 50%;
-    // transform: translate(-50%);
     width: 100%;
     text-align: center;
-    color: $textColor;
+    color: $white;
     a {
       text-decoration: none;
       margin-left: 0.5rem;
-      color: $textColor;
+      color: $white;
       &:hover {
-        color: $white;
+        color: $progress;
       }
     }
   }

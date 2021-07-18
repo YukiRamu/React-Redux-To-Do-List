@@ -26,12 +26,11 @@ const ToDoList = () => {
 
   //Private state hook
   const [editItem, setEditItem] = useState("");
-  // const [alertModal, setAlertModal] = useState(false);
 
   //methods
   /* delete */
   const deleteToDoItem = (id) => {
-    //find which item is completed  -----> will be refactored. just pass id or index. isDeleted  not needed
+    //find which item is completed 
     let delItem = toDoList.filter(elem => elem.id === id);
 
     //change isDeleted flag and dispatch
@@ -171,8 +170,12 @@ const ToDoList = () => {
                   elem.isVisible === true &&
                   <Col
                     data-id={elem.id}
-                    className={[
-                      "col-md-5 col-lg-4 col-xl-3 task tabletTask",
+                    className={isTablet ? [
+                      "col-md-5 task tabletTask",
+                      elem.isCompleted && "complete",
+                      elem.isEditing && "editing"
+                    ].join(' ') : [
+                      "col-lg-3 col-xl-2 task deskTopTask",
                       elem.isCompleted && "complete",
                       elem.isEditing && "editing"
                     ].join(' ')}>

@@ -5,7 +5,6 @@ import { FilterSelector, changeFilter } from '../../redux/FilterSlice';
 import "./ToDoInput.css";
 import uuid from 'react-uuid';
 import { Form, Button } from 'react-bootstrap';
-import { FiAlertOctagon } from "react-icons/fi";
 import { AlertContext } from '../AlertModal/AlertModal';
 
 const ToDoInput = () => {

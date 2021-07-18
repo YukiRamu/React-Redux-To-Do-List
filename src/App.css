@@ -30,16 +30,16 @@
 .appContainer footer {
   width: 100%;
   text-align: center;
-  color: #7e0d4c;
+  color: white;
 }
 
 .appContainer footer a {
   text-decoration: none;
   margin-left: 0.5rem;
-  color: #7e0d4c;
+  color: white;
 }
 
 .appContainer footer a:hover {
-  color: white;
+  color: #fc6177;
 }
 /*# sourceMappingURL=App.css.map */

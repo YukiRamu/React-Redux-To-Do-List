@@ -1,12 +1,11 @@
 @import "./colors";
 
 body {
-  // background: linear-gradient(135deg, #ffd3a5 0%, #ee7565d1 100%);
   background: url(./bg.jpg);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  backdrop-filter: blur(3px);
+  // backdrop-filter: blur(1px);
   min-height: 100vh;
   color: $white !important;
   //font-family: "Kavivanar", cursive !important;

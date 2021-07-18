@@ -12,9 +12,9 @@
 
 .toDosContainer .taskCard.tablet {
   grid-gap: 1.5rem;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .toDosContainer .taskCard .task {
@@ -139,7 +139,40 @@
   width: 50%;
 }
 
+.toDosContainer .taskCard .task.deskTopTask {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 0.5vw;
+}
+
+.toDosContainer .taskCard .task.deskTopTask .editBox {
+  margin: 0.5rem auto;
+  width: 100%;
+  border-radius: 0.5vw;
+}
+
+.toDosContainer .taskCard .task.deskTopTask p {
+  width: 100%;
+  text-align: center;
+}
+
+.toDosContainer .taskCard .task.deskTopTask .btns {
+  width: 100%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .toDosContainer .msg {
   text-align: center;
+  color: #dd3144;
 }
 /*# sourceMappingURL=ToDoList.css.map */
