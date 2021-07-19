@@ -15,6 +15,17 @@
   
 </ul>
 
+<h3 align="left">💡Tech stacks:</h3>
+<ul>
+<li>React</li>
+<li>Redux Toolkit</li>
+<li>redux-localstorage-simple</li>
+<li>react-responsive</li>
+<li>react-bootstrap</li>
+<li>react-icons</li>
+<li>scss</li> 
+</ul>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
