@@ -1,3 +1,20 @@
+<h1 align="center">Redux To Do List</h1>
+
+<h3 align="left">⚓Website: <a href = "https://yukiramu.github.io/React-Redux-To-Do-List/">app</a></h3>
+
+<h3 align="left">💡Features:</h3>
+<ul>
+<li>To-do task input(add, delete, done)</li>
+<li>Data stored in local storage</li>
+<li>"All", "In progress", and "Complete" status filter</li>
+<li>Editing mode handling</li>
+<li>Responsive design</li><br/>
+  
+  ![image](https://user-images.githubusercontent.com/76931326/126123510-49592354-2368-4282-bbaf-d69f8631f67d.png)
+
+  
+</ul>
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
 
 ## Available Scripts
