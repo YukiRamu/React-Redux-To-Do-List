@@ -24,7 +24,7 @@ const ToDoFilter = () => {
   const filterItem = (condition) => {
     //if it is an editing mode, show alert and return false;
     if (filter.editMode) {
-      setAlertModal({ show: true, msg: "Oops! You haven't save your task." });
+      setAlertModal({ show: true, msg: "Oops! You haven't saved your task." });
       return false;
     } else {
       //prepare action methods
